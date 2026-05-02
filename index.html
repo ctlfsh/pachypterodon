@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinosaurs vs Prehistoric Reptiles vs Marine Reptiles!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FFF8E7;
+      --parchment: #FAEBD7;
+      --brown-dark: #4A2C10;
+      --brown-mid: #7B3F0E;
+      --brown-light: #C1691E;
+      --sandy: #E8B87A;
+      --green-dark: #2A5C2A;
+      --green-mid: #4A8B4A;
+      --teal: #0E8A8A;
+      --teal-light: #1CB5B5;
+      --orange: #E07010;
+      --orange-bright: #FF9020;
+      --gold: #D4A017;
+      --purple: #6B28B8;
+      --font-display: 'Fredoka One', cursive;
+      --font-body: 'Nunito', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--cream);
+      color: var(--brown-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(155deg, #3B2010 0%, #5C3820 35%, #223C1A 70%, #0E2A1A 100%);
+      padding: 80px 24px 110px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 60px;
+      background: var(--cream);
+      clip-path: polygon(0 100%, 100% 100%, 100% 20%, 85% 70%, 70% 15%, 55% 65%, 40% 10%, 25% 60%, 10% 20%, 0 55%);
+    }
+
+    .hero-icons {
+      font-size: 2.8rem;
+      letter-spacing: 10px;
+      margin-bottom: 22px;
+      display: block;
+      animation: floatUp 3s ease-in-out infinite;
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      color: #FFD060;
+      text-shadow: 3px 4px 0 #7B3F0E, 6px 7px 0 rgba(0,0,0,.25);
+      line-height: 1.2;
+      max-width: 860px;
+      margin: 0 auto 22px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: #F0D090;
+      font-weight: 600;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-tag {
+      background: rgba(255,255,255,.12);
+      border: 2px solid rgba(255,208,96,.45);
+      color: #FFD060;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ── SHARED SECTION ──────────────────────────────────────── */
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      height: 5px;
+      border-radius: 3px;
+      margin: 10px auto 0;
+      width: 80px;
+    }
+
+    .divider {
+      text-align: center;
+      font-size: 1.6rem;
+      letter-spacing: 12px;
+      padding: 18px;
+      opacity: .35;
+    }
+
+    /* ── MEET THE GROUPS ─────────────────────────────────────── */
+    .meet-wrap {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 100%);
+      border-bottom: 3px dashed var(--sandy);
+    }
+
+    .meet-wrap .section-title { color: var(--brown-dark); }
+    .meet-wrap .section-title::after { background: var(--orange); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+    }
+
+    .creature-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 8px 28px rgba(74,44,16,.14);
+      border: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      animation: fadeUp .6s ease-out both;
+    }
+
+    .creature-card:nth-child(1) { animation-delay: .1s; }
+    .creature-card:nth-child(2) { animation-delay: .22s; }
+    .creature-card:nth-child(3) { animation-delay: .34s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .creature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+    }
+
+    .card-dino::before    { background: var(--orange); }
+    .card-reptile::before { background: var(--green-mid); }
+    .card-marine::before  { background: var(--teal); }
+
+    .creature-card:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: 0 18px 44px rgba(74,44,16,.22); }
+    .card-dino:hover    { border-color: var(--orange); }
+    .card-reptile:hover { border-color: var(--green-mid); }
+    .card-marine:hover  { border-color: var(--teal); }
+
+    /* placeholder boxes */
+    .img-placeholder {
+      width: 100%;
+      height: 220px;
+      border-radius: 14px;
+      border: 3px dashed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-weight: 700;
+      font-size: .95rem;
+      transition: background .3s;
+    }
+
+    .card-dino    .img-placeholder { border-color: var(--orange);     background: #FFF6EC; color: var(--brown-light); }
+    .card-reptile .img-placeholder { border-color: var(--green-mid);  background: #F0FFF0; color: var(--green-dark); }
+    .card-marine  .img-placeholder { border-color: var(--teal);       background: #E5FAFA; color: var(--teal); }
+
+    .ph-icon { font-size: 2.8rem; opacity: .55; }
+
+    .card-label {
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: .55;
+      margin-bottom: 6px;
+    }
+
+    .creature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      margin-bottom: 10px;
+    }
+
+    .card-dino h3    { color: var(--orange); }
+    .card-reptile h3 { color: var(--green-dark); }
+    .card-marine h3  { color: var(--teal); }
+
+    .creature-card p { font-size: .98rem; line-height: 1.65; color: #5C3820; }
+
+    .badge {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-top: 14px;
+    }
+
+    .card-dino    .badge { background: #FFE5C8; color: var(--brown-light); }
+    .card-reptile .badge { background: #D4F0D4; color: var(--green-dark); }
+    .card-marine  .badge { background: #C4EEEE; color: var(--teal); }
+
+    /* ── COMPARISON TABLE ────────────────────────────────────── */
+    .chart-wrap { background: linear-gradient(180deg, var(--parchment) 0%, #FFF8F0 100%); }
+    .chart-wrap .section-title { color: var(--brown-dark); }
+    .chart-wrap .section-title::after { background: var(--gold); }
+
+    .table-scroll { overflow-x: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(74,44,16,.18); }
+
+    table.compare {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(.82rem, 1.4vw, 1rem);
+    }
+
+    table.compare thead tr { background: var(--brown-dark); }
+
+    table.compare th {
+      padding: 16px 14px;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(.95rem, 1.8vw, 1.15rem);
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    table.compare th:first-child { text-align: left; color: var(--sandy); }
+    .th-dino    { background: #B85B10 !important; }
+    .th-reptile { background: var(--green-dark) !important; }
+    .th-marine  { background: #0A7070 !important; }
+
+    table.compare tbody tr { transition: background .18s; }
+    table.compare tbody tr:nth-child(odd)  { background: #fff; }
+    table.compare tbody tr:nth-child(even) { background: #FFF6EC; }
+    table.compare tbody tr:hover           { background: #FFEEDD; }
+
+    table.compare td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #F0DDC8;
+      vertical-align: middle;
+      line-height: 1.45;
+    }
+
+    table.compare td:first-child {
+      font-weight: 700;
+      color: var(--brown-dark);
+      background: #FFF0DE;
+      border-right: 2px solid #E8C8A0;
+      min-width: 130px;
+    }
+
+    table.compare td:not(:first-child) { text-align: center; }
+    table.compare tbody tr:last-child td { border-bottom: none; }
+
+    /* ── POEM ────────────────────────────────────────────────── */
+    .poem-wrap {
+      background: linear-gradient(145deg, #2C180A 0%, #482A14 45%, #162A14 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poem-wrap::before {
+      content: '🦕 🦖 🦅 🌊';
+      position: absolute;
+      font-size: 9rem;
+      opacity: .04;
+      top: -10px; right: -30px;
+      letter-spacing: 24px;
+      pointer-events: none;
+    }
+
+    .poem-wrap .section-title { color: var(--gold); }
+    .poem-wrap .section-title::after { background: var(--gold); }
+
+    .poem-layout {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .poem-text {
+      flex: 1;
+      min-width: 280px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(212,160,23,.35);
+      border-radius: 18px;
+      padding: 36px;
+      backdrop-filter: blur(4px);
+    }
+
+    .poem-text p {
+      font-size: clamp(.95rem, 1.7vw, 1.1rem);
+      line-height: 2.1;
+      font-style: italic;
+      color: #F0E0C0;
+    }
+
+    .poem-label {
+      font-style: normal;
+      font-size: .75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold);
+      display: block;
+      margin: 18px 0 2px;
+      opacity: .85;
+    }
+
+    .audio-panel {
+      flex: 0 0 270px;
+      min-width: 250px;
+    }
+
+    .audio-card {
+      background: rgba(255,255,255,.1);
+      border: 2px solid rgba(212,160,23,.45);
+      border-radius: 22px;
+      padding: 32px 26px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .audio-card .aicon {
+      font-size: 3.2rem;
+      display: block;
+      margin-bottom: 14px;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.12); }
+    }
+
+    .audio-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .audio-card .audio-hint {
+      font-size: .85rem;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 22px;
+    }
+
+    .audio-card audio {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* ── MASHUP ──────────────────────────────────────────────── */
+    .mashup-wrap {
+      background: linear-gradient(150deg, #FFF8E7 0%, #F4FFF4 50%, #EAF4FF 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mashup-wrap::before {
+      content: '⚡';
+      position: absolute;
+      font-size: 22rem;
+      opacity: .04;
+      top: -80px; left: -60px;
+      pointer-events: none;
+    }
+
+    .mashup-wrap .section-title { color: var(--purple); }
+    .mashup-wrap .section-title::after {
+      background: linear-gradient(90deg, var(--orange), var(--purple), var(--teal));
+      width: 120px;
+    }
+
+    .mashup-intro {
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--brown-mid);
+      max-width: 680px;
+      margin: -24px auto 36px;
+      line-height: 1.75;
+    }
+
+    .name-banner { text-align: center; margin-bottom: 42px; }
+
+    .mashup-name {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      display: inline-block;
+      background: linear-gradient(135deg, var(--orange), var(--purple) 50%, var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(2px 3px 5px rgba(0,0,0,.12));
+    }
+
+    .mashup-tagline {
+      font-size: 1.1rem;
+      color: var(--brown-mid);
+      font-weight: 700;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .mashup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) { .mashup-grid { grid-template-columns: 1fr; } }
+
+    .mashup-ph {
+      width: 100%;
+      height: 360px;
+      border-radius: 22px;
+      border: 4px dashed var(--purple);
+      background: linear-gradient(135deg, #FFF5E0 0%, #F5E5FF 50%, #E0F5FF 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .mashup-ph .ph-icon { font-size: 4rem; }
+    .mashup-ph .ph-label { font-family: var(--font-display); font-size: 1.1rem; color: var(--purple); opacity: .7; }
+    .mashup-ph .ph-soon  { font-size: .8rem; color: #aaa; font-style: italic; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat-box {
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+
+    .stat-box .si { font-size: 1.6rem; display: block; margin-bottom: 5px; }
+    .stat-box .sl { font-size: .68rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; color: #aaa; }
+    .stat-box .sv { font-family: var(--font-display); font-size: 1rem; color: var(--brown-dark); }
+
+    .traits { display: flex; flex-direction: column; gap: 16px; }
+
+    .trait {
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .trait-d { background: #FFF0E0; border-left: 5px solid var(--orange); }
+    .trait-s { background: #EFFFEF; border-left: 5px solid var(--green-mid); }
+    .trait-m { background: #E4F8F8; border-left: 5px solid var(--teal); }
+
+    .trait .ti { font-size: 2rem; flex-shrink: 0; }
+
+    .trait .tf {
+      font-size: .73rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .trait-d .tf { color: var(--orange); }
+    .trait-s .tf { color: var(--green-dark); }
+    .trait-m .tf { color: var(--teal); }
+
+    .trait h4 { font-family: var(--font-display); font-size: 1.08rem; color: var(--brown-dark); margin-bottom: 4px; }
+    .trait p  { font-size: .88rem; color: #5C3820; line-height: 1.55; }
+
+    .verdict {
+      background: linear-gradient(135deg, #FFF2E6, #F2E6FF, #E6F7FF);
+      border: 2px dashed rgba(107,40,184,.3);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+
+    .verdict .vt { font-family: var(--font-display); font-size: 1.1rem; color: var(--purple); margin-bottom: 8px; }
+    .verdict p   { font-size: .92rem; color: var(--brown-mid); line-height: 1.65; }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--brown-dark);
+      color: rgba(255,255,255,.55);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: .9rem;
+    }
+
+    footer .gold { color: var(--gold); font-weight: 700; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      .hero { padding: 50px 20px 90px; }
+      .poem-layout { flex-direction: column; }
+      .audio-panel { flex: 1; width: 100%; }
+      table.compare th, table.compare td { padding: 10px 9px; }
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <span class="hero-icons">🦕 🦖 🦅 🌊</span>
+  <h1>The Difference Between Dinosaurs, Prehistoric&nbsp;Reptiles, and Prehistoric Marine&nbsp;Reptiles</h1>
+  <p class="hero-sub">A wild trip through prehistoric time — who ruled the land, the sky, and the deep blue sea!</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🦕 Dinosaurs</span>
+    <span class="hero-tag">🦅 Prehistoric Reptiles</span>
+    <span class="hero-tag">🌊 Marine Reptiles</span>
+  </div>
+</header>
+
+
+<!-- ══════════ MEET THE GROUPS ══════════ -->
+<div class="meet-wrap">
+  <section class="section">
+    <h2 class="section-title">🔍 Meet the Groups!</h2>
+    <div class="cards-grid">
+
+      <!-- Dinosaur -->
+      <div class="creature-card card-dino">
+        <div class="img-placeholder" style="border:none;background:none;padding:0;height:auto;">
+          <img src="pachycephalosaurus.jpg" alt="Pachycephalosaurus dinosaur" style="width:100%;height:220px;object-fit:cover;border-radius:14px;display:block;">
+        </div>
+        <div class="card-label">Example</div>
+        <h3>Pachycephalosaurus!</h3>
+        <p>Dinosaurs ruled the land for over 160 million years! What sets them apart? Their legs go straight <em>under</em> their bodies — giving them an upright, powerful stance. The Pachycephalosaurus is famous for its domed skull, up to 10 inches thick — it could headbutt rivals like a living battering ram!</p>
+        <span class="badge">🌿 Land Rulers</span>
+      </div>
+
+      <!-- Prehistoric Reptile -->
+      <div class="creature-card card-reptile">
+        <div class="img-placeholder" style="border:none;background:none;padding:0;height:auto;">
+          <img src="quetzalcoatlus.jpg" alt="Quetzalcoatlus prehistoric flying reptile" style="width:100%;height:220px;object-fit:cover;border-radius:14px;display:block;">
+        </div>
+        <div class="card-label">Example</div>
+        <h3>Quetzalcoatlus!</h3>
+        <p>Flying reptiles called pterosaurs ruled the skies — but they were <strong>NOT</strong> dinosaurs! They were close cousins. The Quetzalcoatlus is the largest flying animal ever known, with a wingspan up to <strong>36 feet</strong> — as wide as a small airplane — and stood as tall as a giraffe on the ground!</p>
+        <span class="badge">☁️ Sky Flyers</span>
+      </div>
+
+      <!-- Marine Reptile -->
+      <div class="creature-card card-marine">
+        <div class="img-placeholder" style="border:none;background:none;padding:0;height:auto;">
+          <img src="mosasaurus.jpg" alt="Mosasaurus prehistoric marine reptile" style="width:100%;height:220px;object-fit:cover;border-radius:14px;display:block;">
+        </div>
+        <div class="card-label">Example</div>
+        <h3>Mosasaurus!</h3>
+        <p>While dinosaurs ruled the land, sea monsters ruled the oceans! Marine reptiles were <strong>NOT</strong> dinosaurs either — they were reptiles that went back to the sea. The Mosasaurus had a jaw like a snake and a powerful tail that could propel it up to 50 feet long through the deep!</p>
+        <span class="badge">🌊 Ocean Monsters</span>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="divider">🦴 🌿 🦴 🌿 🦴</div>
+
+
+<!-- ══════════ COMPARISON TABLE ══════════ -->
+<div class="chart-wrap">
+  <section class="section">
+    <h2 class="section-title">📊 Spot the Differences!</h2>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th class="th-dino">🦕 Dinosaur</th>
+            <th class="th-reptile">🦅 Prehistoric Reptile<br><small style="font-family:var(--font-body);font-size:.75rem;font-weight:400;">(e.g. Pterosaur)</small></th>
+            <th class="th-marine">🌊 Marine Reptile<br><small style="font-family:var(--font-body);font-size:.75rem;font-weight:400;">(e.g. Mosasaur)</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Where They Lived</td>
+            <td>On land 🌿</td>
+            <td>In the sky ☁️</td>
+            <td>In the ocean 🌊</td>
+          </tr>
+          <tr>
+            <td>Legs / Limbs</td>
+            <td>Legs straight under body — upright posture</td>
+            <td>Arms evolved into giant wing membranes</td>
+            <td>Paddle-like flippers and a powerful tail</td>
+          </tr>
+          <tr>
+            <td>Are They Dinosaurs?</td>
+            <td>✅ Yes!</td>
+            <td>❌ Nope — close cousins!</td>
+            <td>❌ Nope — totally separate reptile group!</td>
+          </tr>
+          <tr>
+            <td>Time Period</td>
+            <td>Triassic–Cretaceous<br>(252–66 MYA)</td>
+            <td>Triassic–Cretaceous<br>(228–66 MYA)</td>
+            <td>Cretaceous &amp; earlier<br>(100–66 MYA)</td>
+          </tr>
+          <tr>
+            <td>Famous Examples</td>
+            <td>T-Rex, Pachycephalosaurus, Brachiosaurus</td>
+            <td>Quetzalcoatlus, Pteranodon</td>
+            <td>Mosasaurus, Plesiosaur, Ichthyosaur</td>
+          </tr>
+          <tr>
+            <td>Body Covering</td>
+            <td>Scales (some had feathers!)</td>
+            <td>Leathery skin, some had fur-like fuzz</td>
+            <td>Smooth, slick scales</td>
+          </tr>
+          <tr>
+            <td>Closest Living Relative</td>
+            <td>Birds! 🐦 (Birds ARE dinosaurs!)</td>
+            <td>Distant cousins of birds &amp; crocs</td>
+            <td>Modern lizards &amp; snakes 🐍</td>
+          </tr>
+          <tr>
+            <td>Hip Socket</td>
+            <td>Fully open hip socket ✅ — the defining dino trait!</td>
+            <td>No open hip socket ❌</td>
+            <td>No open hip socket ❌</td>
+          </tr>
+          <tr>
+            <td>Fun Superpower</td>
+            <td>Could run fast on two legs (or stomp on four!)</td>
+            <td>Soared on warm air thermals like a glider</td>
+            <td>Could hold breath for a long time underwater</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<div class="divider">🌋 ⚡ 🌋 ⚡ 🌋</div>
+
+
+<!-- ══════════ POEM ══════════ -->
+<div class="poem-wrap">
+  <section class="section">
+    <h2 class="section-title">📜 A Poem of the Ancient World</h2>
+    <div class="poem-layout">
+
+      <div class="poem-text">
+        <p>
+          <span class="poem-label">Verse 1 — The Dinosaurs</span>
+          In forests thick and valleys wide,<br>
+          The dinosaurs walked with thundering stride.<br>
+          With legs held tall beneath their frame,<br>
+          Each one so mighty, none the same!<br>
+          <br>
+          <span class="poem-label">Verse 2 — The Sky Reptiles</span>
+          Up in the clouds the pterosaurs soared,<br>
+          On wings of skin they dipped and roared.<br>
+          Not dinosaurs — though cousins dear,<br>
+          They ruled the skies without any fear!<br>
+          <br>
+          <span class="poem-label">Verse 3 — The Sea Monsters</span>
+          Deep in the ocean, dark and blue,<br>
+          The marine reptiles dove right through.<br>
+          With paddle fins and powerful tails,<br>
+          They wrote the sea's most epic tales!<br>
+          <br>
+          <span class="poem-label">Chorus</span>
+          Three great kingdoms, long ago,<br>
+          Land and sky and deep below —<br>
+          Each one special, each one grand,<br>
+          Prehistoric creatures, oh so wonderfully planned! 🌟
+        </p>
+      </div>
+
+      <div class="audio-panel">
+        <div class="audio-card">
+          <span class="aicon">🎵</span>
+          <h4>Listen to the Poem!</h4>
+          <p class="audio-hint">Turn up the volume and enjoy!</p>
+          <!-- TODO: replace "poem.mp3" with your actual audio file name/path -->
+          <audio controls>
+            <source src="poem.mp3" type="audio/mpeg">
+            Your browser doesn't support audio — try a different browser!
+          </audio>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="divider">🧬 ✨ 🧬 ✨ 🧬</div>
+
+
+<!-- ══════════ MASHUP CREATURE ══════════ -->
+<div class="mashup-wrap">
+  <section class="section">
+    <h2 class="section-title">⚡ The Ultimate Mashup Creature!</h2>
+    <p class="mashup-intro">What if a mad prehistoric scientist combined the coolest parts of three totally different ancient animals? Science class just got <strong>WILD</strong> — say hello to our incredible creation!</p>
+
+    <div class="name-banner">
+      <div class="mashup-name">PACHYPTERODON</div>
+      <p class="mashup-tagline">The Thunder-Skull Sea-Flyer 🌩️</p>
+    </div>
+
+    <div class="mashup-grid">
+
+      <!-- Image + stats column -->
+      <div>
+        <div class="mashup-ph" style="border:none;background:none;padding:0;height:auto;">
+          <img src="pachypterodon.jpg" alt="Pachypterodon illustration" style="width:100%;border-radius:22px;display:block;box-shadow:0 8px 32px rgba(74,44,16,.2);">
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box reveal">
+            <span class="si">📏</span>
+            <div class="sl">Length</div>
+            <div class="sv">~45 feet</div>
+          </div>
+          <div class="stat-box reveal">
+            <span class="si">⚡</span>
+            <div class="sl">Danger Level</div>
+            <div class="sv">★★★☆☆</div>
+          </div>
+          <div class="stat-box reveal">
+            <span class="si">🌍</span>
+            <div class="sl">Habitat</div>
+            <div class="sv">Everywhere!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Traits column -->
+      <div class="traits">
+
+        <div class="trait trait-d reveal">
+          <span class="ti">🦕</span>
+          <div>
+            <div class="tf">Inherited from: Pachycephalosaurus</div>
+            <h4>The Indestructible Dome Head!</h4>
+            <p>A skull roof that is <strong>10 inches of pure bone</strong>! Pachypterodon can headbutt boulders, break through cave walls, and send rivals flying with one unstoppable charging ram!</p>
+          </div>
+        </div>
+
+        <div class="trait trait-s reveal">
+          <span class="ti">🦅</span>
+          <div>
+            <div class="tf">Inherited from: Pteranodon</div>
+            <h4>Giant Sky-Splitting Wings!</h4>
+            <p>Enormous leathery wings with a <strong>30-foot wingspan</strong> let Pachypterodon take flight despite its massive size! It swoops over mountains and dives like a fighter jet — no island is safe!</p>
+          </div>
+        </div>
+
+        <div class="trait trait-m reveal">
+          <span class="ti">🌊</span>
+          <div>
+            <div class="tf">Inherited from: Mosasaurus</div>
+            <h4>A Powerful Serpentine Tail!</h4>
+            <p>The long, muscular tail of a Mosasaurus means Pachypterodon can crash into any ocean and torpedo through the deep! It can hold its breath for <strong>45 minutes</strong> at full dive depth!</p>
+          </div>
+        </div>
+
+        <div class="verdict reveal">
+          <div class="vt">🌟 The Verdict:</div>
+          <p>Pachypterodon is the ultimate apex creature — at home in the sky, on land, AND in the ocean! It's as powerful as it is fascinating... and deep down, it just wants to explore every corner of the prehistoric world. 🥰</p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+</div>
+
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p>Made with <span class="gold">🦕 prehistoric love 🦕</span> — Keep exploring, keep wondering!</p>
+  <p style="margin-top:8px;font-size:.78rem;">MYA = Million Years Ago</p>
+</footer>
+
+
+<script>
+  // Scroll-reveal for .reveal elements
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
